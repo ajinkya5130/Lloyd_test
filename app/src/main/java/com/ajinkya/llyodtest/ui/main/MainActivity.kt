@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -59,6 +60,7 @@ class MainActivity : BaseActivity() {
 
                     }
                     Status.ERROR -> {
+                        Toast.makeText(this, response.message, Toast.LENGTH_LONG).show()
                         progressDialog.hideProgress()
                     }
                     Status.LOADING -> {
