@@ -73,6 +73,7 @@ class MainActivity : BaseActivity() {
 
                 }
             } catch (e: Exception) {
+                Log.e(TAG, "liveDataInformation: ${e.message}")
                 progressDialog.hideProgress()
             }
 
