@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues name="AGP (7.1.1)" by="lint 7.1.1" client="gradle" dependencies="false" format="6"
+    type="baseline" variant="fatal" version="7.1.1">
+
+    <issue errorLine1="-keepclasseswithmembernames class * {" errorLine2="^" id="Proguard"
+        message="Obsolete ProGuard file; use `-keepclasseswithmembers` instead of `-keepclasseswithmembernames`">
+        <location column="1" file="proguard-rules.pro" line="64" />
+    </issue>
+
+</issues>
