@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ajinkya.llyodtest.api_calls.ApiResponse
+import com.ajinkya.llyodtest.model.WeatherModel
 import com.ajinkya.llyodtest.repository.ServerRepository
-import com.ajinkya.weather_forecast.model.WeatherModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

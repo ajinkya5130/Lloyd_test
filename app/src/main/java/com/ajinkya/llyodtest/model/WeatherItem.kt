@@ -1,5 +1,9 @@
 package com.ajinkya.weather_forecast.model
 
+import com.ajinkya.llyodtest.model.FeelsLike
+import com.ajinkya.llyodtest.model.Temp
+import com.ajinkya.llyodtest.model.WeatherObject
+
 data class WeatherItem(
     val clouds: Int,
     val deg: Int,

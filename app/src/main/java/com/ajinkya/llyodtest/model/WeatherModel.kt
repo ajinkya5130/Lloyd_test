@@ -1,4 +1,6 @@
-package com.ajinkya.weather_forecast.model
+package com.ajinkya.llyodtest.model
+
+import com.ajinkya.weather_forecast.model.WeatherItem
 
 data class WeatherModel(
     val city: City,

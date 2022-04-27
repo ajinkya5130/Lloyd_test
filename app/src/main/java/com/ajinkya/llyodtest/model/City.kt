@@ -1,4 +1,4 @@
-package com.ajinkya.weather_forecast.model
+package com.ajinkya.llyodtest.model
 
 data class City(
     val coord: Coord,
