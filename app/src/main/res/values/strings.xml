@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Llyod Test</string>
+    <string name="humidity">Humidity</string>
+    <string name="circleshape">CircleShape</string>
+    <string name="loading">Loading…</string>
+    <string name="search">Search</string>
+</resources>
