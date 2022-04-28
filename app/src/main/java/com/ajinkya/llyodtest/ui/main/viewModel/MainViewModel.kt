@@ -24,27 +24,35 @@ class MainViewModel @Inject constructor(private val repository: ServerRepository
         get() =
             _isCityNull
 
-    fun isWeatherCityNotNull(cityName: String) {
-        if (cityName.isNotEmpty()) {
+    fun isWeatherCityNotNull(cityName: String): Boolean {
+        return if (cityName.isNotEmpty()) {
             _isCityNull.postValue(ApiResponse.success(cityName))
+            true
         } else {
             _isCityNull.postValue(ApiResponse.error("", ""))
+            false
         }
 
     }
 
     fun getWeatherInfo(cityName: String) = viewModelScope.launch {
-        _getWeatherInfoByCity.postValue(ApiResponse.loading(null))
-        try {
-            repository.getCityWeatherData(cityName)
-                .let { response ->
-                    _getWeatherInfoByCity.postValue(response)
-                }
-        } catch (e: Exception) {
+        if (isWeatherCityNotNull(cityName)) {
+            _getWeatherInfoByCity.postValue(ApiResponse.loading(null))
+            try {
+                repository.getCityWeatherData(cityName)
+                    .let { response ->
+                        _getWeatherInfoByCity.postValue(response)
+                    }
+            } catch (e: Exception) {
+                _getWeatherInfoByCity.postValue(
+                    ApiResponse.error(e.message!!, null)
+                )
+            }
+        } else {
             _getWeatherInfoByCity.postValue(
-                ApiResponse.error(e.message!!, null)
+                ApiResponse.error("Please enter city", null)
             )
-
         }
+
     }
 }
