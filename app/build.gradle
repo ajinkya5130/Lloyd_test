@@ -89,6 +89,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 
+
     //Image loading library
     implementation("io.coil-kt:coil:1.4.0")
 //Architecture Component
@@ -100,5 +101,18 @@ dependencies {
     //Lifecycle
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+
+
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "org.robolectric:robolectric:4.3.1"
+    testImplementation "org.mockito:mockito-core:2.28.2"
+    testImplementation "com.google.truth:truth:1.0.1"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
+
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "org.mockito:mockito-core:2.28.2"
+    androidTestImplementation "com.google.truth:truth:1.0.1"
 
 }

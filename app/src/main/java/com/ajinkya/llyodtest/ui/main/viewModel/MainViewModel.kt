@@ -6,30 +6,39 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ajinkya.llyodtest.api_calls.ApiResponse
 import com.ajinkya.llyodtest.model.WeatherModel
-import com.ajinkya.llyodtest.repository.ServerRepository
+import com.ajinkya.llyodtest.repository.ServerRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: ServerRepository) : ViewModel() {
+class MainViewModel @Inject constructor(private val repository: ServerRepositoryInterface) :
+    ViewModel() {
 
     private var _getWeatherInfoByCity = MutableLiveData<ApiResponse<WeatherModel>>()
     val getWeatherInfoByCity: LiveData<ApiResponse<WeatherModel>>
         get() =
             _getWeatherInfoByCity
+    private var _isCityNull = MutableLiveData<ApiResponse<String>>()
+    val isCityNull: LiveData<ApiResponse<String>>
+        get() =
+            _isCityNull
+
+    fun isWeatherCityNotNull(cityName: String) {
+        if (cityName.isNotEmpty()) {
+            _isCityNull.postValue(ApiResponse.success(cityName))
+        } else {
+            _isCityNull.postValue(ApiResponse.error("", ""))
+        }
+
+    }
 
     fun getWeatherInfo(cityName: String) = viewModelScope.launch {
         _getWeatherInfoByCity.postValue(ApiResponse.loading(null))
         try {
             repository.getCityWeatherData(cityName)
                 .let { response ->
-                    if (response.isSuccessful) {
-                        _getWeatherInfoByCity.postValue(ApiResponse.success(response.body()))
-                    } else
-                        _getWeatherInfoByCity.postValue(
-                            ApiResponse.error(response.message(), null)
-                        )
+                    _getWeatherInfoByCity.postValue(response)
                 }
         } catch (e: Exception) {
             _getWeatherInfoByCity.postValue(

@@ -5,6 +5,8 @@ import android.content.Context
 import com.ajinkya.llyodtest.BuildConfig
 import com.ajinkya.llyodtest.api_calls.ApiService
 import com.ajinkya.llyodtest.listeners.IProgressListener
+import com.ajinkya.llyodtest.repository.ServerRepository
+import com.ajinkya.llyodtest.repository.ServerRepositoryInterface
 import com.ajinkya.llyodtest.util.CustomProgress
 import dagger.Module
 import dagger.Provides
@@ -53,6 +55,10 @@ object AppModule {
             .build()
             .create(ApiService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideServerRepo(apiService: ApiService) =
+        ServerRepository(apiService) as ServerRepositoryInterface
 
     @Provides
     @Singleton
